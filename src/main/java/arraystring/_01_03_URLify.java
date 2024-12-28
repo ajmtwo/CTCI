@@ -11,7 +11,25 @@ package arraystring;
  * Output: "Mr%20John%20Smith"
  */
 class _01_03_URLify {
-    char[] urlify(char[] chars, int trueLength) {
-        throw new UnsupportedOperationException();
+    char[] urlify(char[] chars, int trueLength)
+    {
+        int copyTo = chars.length - 1;
+
+        for (int copyFrom = trueLength - 1; copyFrom >= 0; copyFrom--)
+        {
+            if (chars[copyFrom] != ' ')
+            {
+                chars[copyTo--] = chars[copyFrom];
+            }
+            else
+            {
+                chars[copyTo] = '0';
+                chars[copyTo - 1] = '2';
+                chars[copyTo - 2] = '%';
+                copyTo -= 3;
+            }
+        }
+
+        return chars;
     }
 }
